@@ -1,1 +1,30 @@
+#include <cs50.h>
+#include <stdio.h>
+int main(void)
+{
+    int begin;
+    do
+    {
+        begin = get_int("The size in the Beginning is : ");
+    }
+    while (begin < 9);
+
+    int end;
+    do
+    {
+        end = get_int("The Size at the End is: ");
+    }
+    while (end < begin);
+
+    int years = 0;
+    while (begin < end)
+    {
+
+        // current population
+        begin = begin + (begin / 3) - (begin / 4);
+
+        years++;
+    }
+    printf("Years: %i\n", years);
+}
 

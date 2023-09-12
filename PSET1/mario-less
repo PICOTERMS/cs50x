@@ -1,1 +1,33 @@
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void)
+{
+    // here, I defined height
+    printf("Let's Play Mario Game \n  please select the height you want to jump \n");
+    int height;
+    do
+    {
+        height = get_int("The height in the Game is:");
+    }
+
+    while (height < 1 || height > 8);
+    // there are 3 loops the 1st is for each row
+    for (int i = 0; i < height; i++)
+    {
+        // the 2nd print spaces for (height - row number -1 )
+        for (int k = 0; k < height - i - 1; k++)
+        {
+            printf(" ");
+        }
+        // there are 3 loops the 1st is for each row
+        for (int j = 0; j <= i; j++)
+        {
+
+            printf("#");
+        }
+
+        printf("\n");
+    }
+}
 

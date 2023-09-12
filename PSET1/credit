@@ -1,1 +1,99 @@
+#include <cs50.h>
+#include <stdio.h>
 
+int main(void)
+{
+    long n = get_long(" Please Enter The Card number :");
+    int i = 0;
+    long count = n;
+    while (count > 0)
+    {
+        count = count / 10;
+        i++;
+    }
+
+    if (i != 13 && i != 15 && i != 16)
+    {
+        printf("INVALID\n");
+        return 0;
+    }
+    // Now I want to count odd and even numbers
+    // Then I want to calculate the sum of odd numbers + sum of even numbers multiply by 2
+
+    int sum_odd = 0;
+    int sum_even = 0;
+    int total = 0;
+    int mode_odd;
+    int mode_even;
+    long x = n;
+    int digit1;
+    int digit2;
+    do
+    {
+        // odd numbers
+        mode_odd = x % 10;
+        x = x / 10;
+        sum_odd = mode_odd + sum_odd;
+
+        // even numbers
+        mode_even = x % 10;
+        mode_even = mode_even * 2;
+        digit1 = mode_even % 10;
+        digit2 = mode_even / 10;
+        sum_even = digit1 + digit2 + sum_even;
+        x = x / 10;
+    }
+    while (x > 0);
+
+    total = sum_even + sum_odd;
+    if (total % 10 != 0)
+    {
+        printf("INVALID\n");
+        return 0;
+    }
+    // American Express numbers start with 34 or 37-15 digit
+
+    // MasterCard numbers start with 51, 52, 53, 54, or 55- 16 digit
+    // Visa numbers start with 4   visa = 13- and 16-digit
+    long y = n;
+    do
+    {
+        y = y / 10;
+    }
+    while (y > 100);
+    if (i == 15)
+    {
+        if (y == 34 || y == 37)
+        {
+            printf("AMEX\n");
+        }
+        else
+        {
+            printf("INVALID\n");
+            return 0;
+        }
+    }
+
+    if (i == 16)
+    {
+        if (y == 51 || y == 52 || y == 53 || y == 54 || y == 55)
+        {
+
+            printf("MASTERCARD\n");
+            return 0;
+        }
+    }
+    if (i == 13 || i == 16)
+    {
+        int y1 = y / 10;
+        if (y1 == 4)
+        {
+            printf("VISA\n");
+        }
+        else
+        {
+            printf("INVALID\n");
+            return 0;
+        }
+    }
+}
